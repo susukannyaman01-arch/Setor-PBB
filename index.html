@@ -2,10 +2,10 @@
 <html lang="id">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Setor PBB Desa Susukan</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
         * {
             margin: 0;
@@ -100,6 +100,16 @@
             align-items: center;
         }
 
+        .token-input {
+            padding: 10px 15px;
+            border-radius: 10px;
+            border: 2px solid #ddd;
+            font-size: 13px;
+            width: 130px;
+        }
+
+        body.dark .token-input { background: #2a2a3e; color: white; border-color: #444; }
+
         .theme-toggle {
             background: rgba(0,0,0,0.1);
             border: none;
@@ -120,23 +130,12 @@
             border-radius: 12px;
             border: 2px solid #e0e0e0;
             font-size: 16px;
-            font-family: 'Inter', sans-serif;
             background: white;
             cursor: pointer;
-            transition: all 0.3s ease;
             min-width: 200px;
         }
 
-        .kolektor-select:focus {
-            outline: none;
-            border-color: #667eea;
-        }
-
-        body.dark .kolektor-select {
-            background: #2a2a3e;
-            border-color: #3a3a5e;
-            color: #e0e0e0;
-        }
+        body.dark .kolektor-select { background: #2a2a3e; color: #e0e0e0; border-color: #3a3a5e; }
 
         .nav-tabs {
             display: flex;
@@ -162,22 +161,12 @@
             background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
         }
+        
+        body.dark .nav-tab { color: #aaa; }
+        body.dark .nav-tab.active { color: white; }
 
-        body.dark .nav-tab {
-            color: #aaa;
-        }
-
-        body.dark .nav-tab.active {
-            color: white;
-        }
-
-        .page {
-            display: none;
-        }
-
-        .page.active {
-            display: block;
-        }
+        .page { display: none; }
+        .page.active { display: block; }
 
         .stats-grid {
             display: grid;
@@ -187,51 +176,19 @@
         }
 
         .stat-card {
-            background: linear-gradient(135deg, rgba(255,255,255,0.95), rgba(255,255,255,0.9));
+            background: rgba(255,255,255,0.95);
             border-radius: 20px;
             padding: 20px;
             text-align: center;
-            transition: transform 0.3s ease;
             box-shadow: 0 4px 15px rgba(0,0,0,0.1);
         }
 
-        body.dark .stat-card {
-            background: linear-gradient(135deg, rgba(40,40,60,0.95), rgba(30,30,50,0.9));
-        }
+        body.dark .stat-card { background: rgba(40,40,60,0.95); }
 
-        .stat-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .stat-card i {
-            font-size: 32px;
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-
-        body.dark .stat-card i {
-            color: #a8c0ff;
-        }
-
-        .stat-card .stat-value {
-            font-size: 28px;
-            font-weight: 700;
-            margin: 8px 0;
-            color: #1a1a2e;
-        }
-
-        body.dark .stat-card .stat-value {
-            color: #ffffff;
-        }
-
-        .stat-card .stat-label {
-            font-size: 14px;
-            color: #555;
-        }
-
-        body.dark .stat-card .stat-label {
-            color: #ccc;
-        }
+        .stat-card i { font-size: 32px; color: #667eea; margin-bottom: 10px; }
+        .stat-card .stat-value { font-size: 26px; font-weight: 700; margin: 8px 0; }
+        .stat-card .stat-label { font-size: 13px; color: #666; }
+        body.dark .stat-card .stat-label { color: #ccc; }
 
         .main-content {
             display: grid;
@@ -239,66 +196,20 @@
             gap: 24px;
         }
 
-        @media (max-width: 900px) {
-            .main-content {
-                grid-template-columns: 1fr;
-            }
-        }
-
-        .search-bar {
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .search-bar i {
-            position: absolute;
-            left: 15px;
-            top: 50%;
-            transform: translateY(-50%);
-            color: #999;
-        }
+        @media (max-width: 900px) { .main-content { grid-template-columns: 1fr; } }
 
         .search-input {
             width: 100%;
-            padding: 14px 20px 14px 45px;
+            padding: 14px 20px;
             border-radius: 12px;
             border: 2px solid #e0e0e0;
-            font-size: 14px;
-            font-family: 'Inter', sans-serif;
-            transition: all 0.3s ease;
+            margin-bottom: 20px;
         }
 
-        .search-input:focus {
-            outline: none;
-            border-color: #667eea;
-        }
+        body.dark .search-input { background: #2a2a3e; border-color: #3a3a5e; color: #e0e0e0; }
 
-        body.dark .search-input {
-            background: #2a2a3e;
-            border-color: #3a3a5e;
-            color: #e0e0e0;
-        }
-
-        .wp-list {
-            max-height: 500px;
-            overflow-y: auto;
-            padding-right: 8px;
-        }
-
-        .wp-list::-webkit-scrollbar {
-            width: 6px;
-        }
-
-        .wp-list::-webkit-scrollbar-track {
-            background: #f1f1f1;
-            border-radius: 10px;
-        }
-
-        .wp-list::-webkit-scrollbar-thumb {
-            background: #667eea;
-            border-radius: 10px;
-        }
-
+        .wp-list { max-height: 500px; overflow-y: auto; }
+        
         .wp-item {
             display: flex;
             align-items: center;
@@ -307,115 +218,71 @@
             background: white;
             border-radius: 16px;
             border: 1px solid #e0e0e0;
-            transition: all 0.3s ease;
         }
 
-        .wp-item:hover {
-            transform: translateX(5px);
-            border-color: #667eea;
-            box-shadow: 0 4px 12px rgba(102,126,234,0.2);
-        }
+        body.dark .wp-item { background: #1e293b; border-color: #334155; }
 
-        .wp-item.disabled {
-            opacity: 0.6;
-            background: #f5f5f5;
-        }
-
-        .wp-item.disabled:hover {
-            transform: none;
-            border-color: #e0e0e0;
-        }
-
-        .wp-checkbox {
-            margin-right: 16px;
-            width: 22px;
-            height: 22px;
-            cursor: pointer;
-            accent-color: #667eea;
-        }
-
-        .wp-info {
-            flex: 1;
-        }
-
-        .wp-nop {
-            font-size: 12px;
-            color: #999;
-            font-family: monospace;
-        }
-
-        .wp-name {
-            font-weight: 600;
-            font-size: 16px;
-            margin: 4px 0;
-        }
-
-        .wp-amount {
-            font-size: 14px;
-            font-weight: 600;
-            color: #667eea;
-        }
+        .wp-info { flex: 1; }
+        .wp-nop { font-size: 11px; color: #999; font-family: monospace; }
+        .wp-name { font-weight: 600; font-size: 16px; margin: 4px 0; }
+        .wp-amount { font-size: 14px; font-weight: 600; color: #667eea; }
 
         .action-buttons {
             display: flex;
-            gap: 8px;
-            align-items: center;
+            gap: 5px;
         }
 
         .add-to-cart-btn {
             background: linear-gradient(135deg, #667eea, #764ba2);
             border: none;
-            padding: 8px 16px;
+            padding: 10px 16px;
             border-radius: 10px;
             color: white;
-            font-size: 12px;
+            font-size: 11px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .add-to-cart-btn:hover {
-            transform: scale(1.05);
-            opacity: 0.9;
+            transition: all 0.2s;
         }
 
         .self-pay-btn {
             background: #ff9800;
             border: none;
-            padding: 8px 16px;
+            padding: 10px 16px;
             border-radius: 10px;
             color: white;
-            font-size: 12px;
+            font-size: 11px;
+            font-weight: 600;
             cursor: pointer;
-            transition: all 0.3s ease;
+            transition: all 0.2s;
         }
 
-        .self-pay-btn:hover {
-            background: #e68900;
-            transform: scale(1.05);
+        .add-to-cart-btn:hover, .self-pay-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        .cart-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 20px;
-            padding-bottom: 12px;
-            border-bottom: 2px solid #e0e0e0;
+        .wp-item.in-cart {
+            opacity: 0.5;
+            filter: grayscale(1);
+            pointer-events: none;
+            background: #f8f9fa !important;
+            position: relative;
         }
 
-        .clear-cart {
-            background: none;
-            border: none;
-            color: #ff6b6b;
-            cursor: pointer;
-            font-size: 14px;
+        .selected-badge {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            background: #00b09b;
+            color: white;
+            font-size: 10px;
+            font-weight: 800;
+            padding: 4px 10px;
+            border-radius: 20px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
         }
 
-        .cart-items {
-            max-height: 350px;
-            overflow-y: auto;
-        }
-
+        .cart-items { max-height: 350px; overflow-y: auto; }
         .cart-item {
             display: flex;
             justify-content: space-between;
@@ -424,56 +291,16 @@
             border-bottom: 1px solid #e0e0e0;
         }
 
-        .cart-item-info {
-            flex: 1;
-        }
-
-        .cart-item-name {
-            font-size: 14px;
-            font-weight: 500;
-        }
-
-        .cart-item-nop {
-            font-size: 11px;
-            color: #999;
-            font-family: monospace;
-        }
-
-        .cart-item-price {
-            font-weight: 600;
-            color: #667eea;
-        }
-
         .cart-item-type {
-            font-size: 10px;
-            padding: 2px 8px;
-            border-radius: 12px;
-            background: #ff9800;
+            font-size: 9px;
+            padding: 2px 6px;
+            border-radius: 8px;
+            background: #667eea;
             color: white;
-            display: inline-block;
         }
 
-        .remove-item {
-            background: none;
-            border: none;
-            color: #ff6b6b;
-            cursor: pointer;
-            padding: 5px 10px;
-            font-size: 14px;
-        }
-
-        .cart-total {
-            margin-top: 20px;
-            padding-top: 16px;
-            border-top: 2px solid #e0e0e0;
-        }
-
-        .total-row {
-            display: flex;
-            justify-content: space-between;
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 16px;
+        .cart-item-type.self-pay {
+            background: #ff9800;
         }
 
         .pay-btn {
@@ -484,174 +311,53 @@
             border-radius: 14px;
             color: white;
             font-size: 16px;
-            font-weight: 600;
+            font-weight: 800;
             cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .pay-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 8px 20px rgba(0,176,155,0.3);
-        }
-
-        .pay-btn:disabled {
-            opacity: 0.5;
-            cursor: not-allowed;
-        }
-
-        .history-filters {
-            display: flex;
-            gap: 16px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-            align-items: center;
-        }
-
-        .history-filters select,
-        .history-filters input {
-            padding: 10px 16px;
-            border-radius: 12px;
-            border: 2px solid #e0e0e0;
-            font-size: 14px;
-            font-family: 'Inter', sans-serif;
-        }
-
-        body.dark .history-filters select,
-        body.dark .history-filters input {
-            background: #2a2a3e;
-            border-color: #3a3a5e;
-            color: #e0e0e0;
-        }
-
-        .history-table-container {
-            overflow-x: auto;
-            max-height: 500px;
-            overflow-y: auto;
-        }
-
-        .history-table {
-            width: 100%;
-            border-collapse: collapse;
-        }
-
-        .history-table th,
-        .history-table td {
-            padding: 12px;
-            text-align: left;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .history-table th {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-            position: sticky;
-            top: 0;
-        }
-
-        .history-table tr:hover {
-            background: rgba(102,126,234,0.1);
-        }
-
-        .history-summary {
             margin-top: 20px;
-            padding: 16px;
-            background: rgba(102,126,234,0.1);
-            border-radius: 16px;
-            display: flex;
-            justify-content: space-between;
-            font-weight: 600;
+            box-shadow: 0 4px 15px rgba(0,176,155,0.3);
+            transition: all 0.3s;
         }
 
-        .loading {
-            text-align: center;
-            padding: 40px;
+        .pay-btn:hover:not(:disabled) {
+            transform: scale(1.02);
+            box-shadow: 0 6px 20px rgba(0,176,155,0.4);
         }
 
-        .spinner {
-            width: 40px;
-            height: 40px;
-            border: 4px solid #f3f3f3;
-            border-top: 4px solid #667eea;
-            border-radius: 50%;
-            animation: spin 1s linear infinite;
-            margin: 0 auto 16px;
-        }
+        .pay-btn:disabled { opacity: 0.5; cursor: not-allowed; }
 
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
-        }
-
+        .history-table { width: 100%; border-collapse: collapse; }
+        .history-table th, .history-table td { padding: 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
+        .history-table th { background: linear-gradient(135deg, #667eea, #764ba2); color: white; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
+        
         .toast {
             position: fixed;
-            bottom: 30px;
-            right: 30px;
-            background: #333;
-            color: white;
-            padding: 12px 24px;
+            bottom: 30px; right: 30px;
+            padding: 15px 25px;
             border-radius: 12px;
-            z-index: 1000;
-            animation: slideIn 0.3s ease;
-        }
-
-        .toast.success {
-            background: #00b09b;
-        }
-
-        .toast.error {
-            background: #ff6b6b;
-        }
-
-        .toast.warning {
-            background: #ff9800;
-        }
-
-        @keyframes slideIn {
-            from {
-                transform: translateX(100%);
-                opacity: 0;
-            }
-            to {
-                transform: translateX(0);
-                opacity: 1;
-            }
-        }
-
-        .empty-state {
-            text-align: center;
-            padding: 40px;
-            color: #999;
-        }
-
-        .filter-tabs {
-            display: flex;
-            gap: 10px;
-            margin-bottom: 20px;
-            flex-wrap: wrap;
-        }
-
-        .filter-tab {
-            padding: 8px 16px;
-            background: rgba(0,0,0,0.05);
-            border: none;
-            border-radius: 20px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .filter-tab.active {
-            background: linear-gradient(135deg, #667eea, #764ba2);
             color: white;
+            font-weight: 600;
+            z-index: 1000;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            animation: slideUp 0.3s ease-out;
         }
 
-        body.dark .filter-tab {
-            background: rgba(255,255,255,0.1);
-            color: #e0e0e0;
+        @keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+
+        .spinner {
+            width: 24px; height: 24px;
+            border: 3px solid rgba(255,255,255,0.3);
+            border-top-color: white;
+            border-radius: 50%;
+            animation: spin 0.8s linear infinite;
+            display: inline-block;
+            vertical-align: middle;
         }
+        @keyframes spin { to { transform: rotate(360deg); } }
     </style>
 </head>
 <body>
     <div class="container">
+        <!-- Header -->
         <div class="glass-card" style="margin-bottom: 24px;">
             <div class="header">
                 <div class="logo">
@@ -659,6 +365,10 @@
                     <p style="font-size: 12px; color: #888;">Sistem Pembayaran Pajak Bumi & Bangunan</p>
                 </div>
                 <div class="header-actions">
+                    <div style="display:flex; flex-direction:column; align-items:flex-end;">
+                        <span style="font-size:9px; font-weight:700;">TOKEN AKSES:</span>
+                        <input type="password" id="accessToken" class="token-input" value="SUSUKAN_2026">
+                    </div>
                     <select id="kolektorSelect" class="kolektor-select">
                         <option value="">-- Pilih Kolektor --</option>
                     </select>
@@ -669,7 +379,7 @@
             </div>
         </div>
 
-        <div class="glass-card" style="padding: 0 24px;">
+        <div class="glass-card" style="padding: 0 24px; margin-bottom: 24px;">
             <div class="nav-tabs">
                 <button class="nav-tab active" data-page="pembayaran">
                     <i class="fas fa-credit-card"></i> Pembayaran
@@ -681,7 +391,7 @@
         </div>
 
         <div id="pagePembayaran" class="page active">
-            <div class="stats-grid" id="statsGrid" style="display: none;">
+            <div class="stats-grid">
                 <div class="stat-card">
                     <i class="fas fa-users"></i>
                     <div class="stat-value" id="totalWp">0</div>
@@ -690,68 +400,44 @@
                 <div class="stat-card">
                     <i class="fas fa-chart-line"></i>
                     <div class="stat-value" id="totalTagihan">Rp0</div>
-                    <div class="stat-label">Total Tagihan (TARGET KETETAPAN)</div>
+                    <div class="stat-label">Target (Ketetapan)</div>
                 </div>
-                <div class="stat-card">
-                    <i class="fas fa-clock"></i>
-                    <div class="stat-value" id="sisaTagihan">Rp0</div>
-                    <div class="stat-label">Sisa Tagihan Belum Dibayar</div>
+                <div class="stat-card" style="border-bottom: 3px solid #ff6b6b;">
+                    <i class="fas fa-clock" style="color: #ff6b6b;"></i>
+                    <div class="stat-value" id="sisaTagihan" style="color: #ff6b6b;">Rp0</div>
+                    <div class="stat-label">Sisa Belum Bayar (Ketetapan)</div>
                 </div>
-                <div class="stat-card">
-                    <i class="fas fa-shopping-cart"></i>
-                    <div class="stat-value" id="cartCount">0</div>
-                    <div class="stat-label">Di Keranjang</div>
+                <div class="stat-card" style="border-bottom: 3px solid #00b09b;">
+                    <i class="fas fa-check-double" style="color: #00b09b;"></i>
+                    <div class="stat-value" id="totalLunas" style="color: #00b09b;">Rp0</div>
+                    <div class="stat-label">Sudah Terkumpul (Ketetapan)</div>
                 </div>
             </div>
 
             <div class="main-content">
                 <div class="glass-card">
-                    <h3 style="margin-bottom: 20px;"><i class="fas fa-list"></i> Daftar Wajib Pajak</h3>
-                    
-                    <div class="search-bar">
-                        <i class="fas fa-search"></i>
-                        <input type="text" id="searchInput" class="search-input" placeholder="Cari NOP atau Nama...">
-                    </div>
-
-                    <div class="filter-tabs">
-                        <button class="filter-tab active" data-filter="all">Semua</button>
-                        <button class="filter-tab" data-filter="uncart">Belum di Keranjang</button>
-                        <button class="filter-tab" data-filter="cart">Sudah di Keranjang</button>
-                    </div>
-
+                    <h3 style="margin-bottom: 20px;">Daftar Wajib Pajak</h3>
+                    <input type="text" id="searchInput" class="search-input" placeholder="Cari NOP atau Nama...">
                     <div id="wpList" class="wp-list">
-                        <div class="loading">
-                            <div class="spinner"></div>
-                            <p>Memuat data...</p>
-                        </div>
+                        <div style="text-align:center; padding:40px; color:#999;">Pilih kolektor terlebih dahulu</div>
                     </div>
                 </div>
 
                 <div class="glass-card">
-                    <div class="cart-header">
-                        <h3><i class="fas fa-shopping-bag"></i> Keranjang</h3>
-                        <button class="clear-cart" onclick="clearCart()"><i class="fas fa-trash-alt"></i> Kosongkan</button>
+                    <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:20px;">
+                        <h3>Keranjang</h3>
+                        <button onclick="clearCart()" style="background:none; border:none; color:#ff6b6b; cursor:pointer; font-size:12px;">Kosongkan</button>
                     </div>
-                    
                     <div id="cartItems" class="cart-items">
-                        <div class="empty-state">
-                            <i class="fas fa-shopping-cart" style="font-size: 48px; margin-bottom: 16px;"></i>
-                            <p>Keranjang masih kosong</p>
-                            <p style="font-size: 12px;">Pilih wajib pajak untuk ditambahkan</p>
-                        </div>
+                        <p style="text-align:center; color:#999; padding:20px;">Keranjang kosong</p>
                     </div>
-
-                    <div class="cart-total">
-                        <div class="total-row">
-                            <span>Total yang akan dibayar:</span>
-                            <span id="cartTotal" style="font-size: 24px; color: #667eea;">Rp0</span>
+                    <div style="margin-top:20px; border-top:1px solid #eee; padding-top:20px;">
+                        <div style="display:flex; justify-content:space-between; font-weight:700; font-size:18px;">
+                            <span>Total Setor:</span>
+                            <span id="cartTotal" style="color:#667eea;">Rp0</span>
                         </div>
-                        <div class="total-row" style="font-size: 14px; color: #888;">
-                            <span>Diskon 10% berlaku s.d 31 Mei 2026</span>
-                        </div>
-                        <button class="pay-btn" id="payBtn" onclick="submitPayment()">
-                            <i class="fas fa-credit-card"></i> Bayar Sekarang
-                        </button>
+                        <p style="font-size:11px; color:#999; margin-top:5px;">*Total di atas adalah nilai setelah diskon (jika ada)</p>
+                        <button class="pay-btn" id="payBtn" onclick="submitPayment()" disabled>Bayar Sekarang</button>
                     </div>
                 </div>
             </div>
@@ -759,38 +445,38 @@
 
         <div id="pageRiwayat" class="page">
             <div class="glass-card">
-                <h3 style="margin-bottom: 20px;"><i class="fas fa-history"></i> Riwayat Pembayaran</h3>
+                <h3 style="margin-bottom: 20px;">Riwayat Pembayaran Aplikasi</h3>
                 
-                <div class="history-filters">
-                    <select id="historyKolektorFilter">
-                        <option value="">Semua Kolektor</option>
-                    </select>
-                    <input type="date" id="historyDateFilter" class="search-input" style="width: auto;">
+                <!-- Summary Riwayat -->
+                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
+                    <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 15px; border-left: 4px solid #667eea;">
+                        <div style="font-size: 11px; color: #666; font-weight: 600;">TOTAL SETORAN (KETETAPAN)</div>
+                        <div id="totalSetorApp" style="font-size: 20px; font-weight: 800; color: #667eea;">Rp0</div>
+                    </div>
+                    <div style="background: rgba(0, 176, 155, 0.1); padding: 15px; border-radius: 15px; border-left: 4px solid #00b09b;">
+                        <div style="font-size: 11px; color: #666; font-weight: 600;">JUMLAH TRANSAKSI</div>
+                        <div id="totalTransaksiApp" style="font-size: 20px; font-weight: 800; color: #00b09b;">0</div>
+                    </div>
                 </div>
 
-                <div class="history-table-container">
+                <div style="display:flex; gap:10px; margin-bottom:20px; flex-wrap: wrap; align-items: center;">
+                    <label style="font-size: 12px; font-weight: 700; color: #666;">FILTER:</label>
+                    <select id="historyKolektorFilter" class="kolektor-select" style="min-width:150px; font-size:14px; padding: 8px 15px;">
+                        <option value="">Semua Kolektor</option>
+                    </select>
+                    <input type="date" id="historyDateFilter" class="token-input" style="width:auto; padding: 8px 15px;">
+                </div>
+                <div style="overflow-x:auto;">
                     <table class="history-table">
                         <thead>
                             <tr>
                                 <th>Tanggal</th>
                                 <th>Kolektor</th>
-                                <th>Jumlah Setor (KETETAPAN)</th>
+                                <th style="text-align:right;">Total Setor (Ketetapan)</th>
                             </tr>
                         </thead>
-                        <tbody id="historyTableBody">
-                            <tr>
-                                <td colspan="3" class="empty-state">
-                                    <i class="fas fa-inbox" style="font-size: 48px;"></i>
-                                    <p>Belum ada riwayat pembayaran</p>
-                                  </td>
-                            </tr>
-                        </tbody>
+                        <tbody id="historyTableBody"></tbody>
                     </table>
-                </div>
-
-                <div class="history-summary">
-                    <span>Total Setor: <strong id="totalSetor">Rp0</strong></span>
-                    <span>Jumlah Transaksi: <strong id="totalTransaksi">0</strong></span>
                 </div>
             </div>
         </div>
@@ -798,455 +484,286 @@
 
     <script>
         // ==================== KONFIGURASI ====================
-        // GANTI URL INI DENGAN URL APPS SCRIPT ANDA!
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwcwksiWuvG5_C0RDwuf4PuxB589WWcmeGy7E6bL5EbDiEvAtwr1c9caxcH1Bk8BtdC/exec";
         
         let allWpData = [];
         let cart = [];
         let currentKolektor = "";
-        let currentFilter = "all";
-        let searchQuery = "";
+        let serverSummary = { totalSisa: 0, totalLunas: 0 };
         let allHistory = [];
+        let targetKetetapanGlobal = 0;
         
-        // TARGET TIDAK BERUBAH
-        let targetTotalTagihan = 0;
+        const formatRupiah = (angka) => new Intl.NumberFormat('id-ID', {
+            style: 'currency', currency: 'IDR', minimumFractionDigits: 0
+        }).format(angka);
+
+        const formatDate = (dateStr) => dateStr ? new Date(dateStr).toLocaleDateString('id-ID', {day:'numeric', month:'short', year:'numeric'}) : "-";
         
-        function formatRupiah(angka) {
-            return new Intl.NumberFormat('id-ID', {
-                style: 'currency',
-                currency: 'IDR',
-                minimumFractionDigits: 0,
-                maximumFractionDigits: 0
-            }).format(angka);
-        }
-        
-        function formatDate(dateString) {
-            if (!dateString) return "-";
-            let date = new Date(dateString);
-            return date.toLocaleDateString('id-ID');
-        }
-        
+        function getToken() { return document.getElementById("accessToken").value; }
+
         function showToast(message, type = "success") {
             const toast = document.createElement('div');
-            toast.className = `toast ${type}`;
-            toast.innerHTML = `<i class="fas fa-${type === 'success' ? 'check-circle' : type === 'error' ? 'exclamation-circle' : 'info-circle'}"></i> ${message}`;
+            toast.className = `toast`;
+            toast.style.background = type === 'success' ? '#00b09b' : '#ff6b6b';
+            toast.innerHTML = `<i class="fas fa-${type==='success'?'check-circle':'exclamation-circle'}"></i> ${message}`;
             document.body.appendChild(toast);
-            setTimeout(() => toast.remove(), 3000);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                setTimeout(() => toast.remove(), 400);
+            }, 3000);
         }
-        
+
         function toggleTheme() {
             document.body.classList.toggle('dark');
             localStorage.setItem('theme', document.body.classList.contains('dark') ? 'dark' : 'light');
         }
-        
-        if (localStorage.getItem('theme') === 'dark') {
-            document.body.classList.add('dark');
-        }
-        
-        function isDiskonValid() {
-            const today = new Date();
-            const batasDiskon = new Date(2026, 4, 31);
-            return today <= batasDiskon;
-        }
-        
-        function getNilaiDibayar(item) {
-            return isDiskonValid() ? item.disc : item.ketetapan;
-        }
-        
+        if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
+
+        function isDiskonValid() { return new Date() <= new Date(2026, 4, 31); }
+
+        // Load Daftar Kolektor
         async function loadKolektorList() {
             try {
-                const response = await fetch(`${SCRIPT_URL}?action=getKolektorList`);
-                const result = await response.json();
-                
+                const res = await fetch(`${SCRIPT_URL}?action=getKolektorList&token=${getToken()}`);
+                const result = await res.json();
                 if (result.status === "success") {
-                    const select = document.getElementById("kolektorSelect");
-                    const historySelect = document.getElementById("historyKolektorFilter");
-                    
-                    result.data.forEach(kolektor => {
-                        const option = document.createElement("option");
-                        option.value = kolektor;
-                        option.textContent = kolektor;
-                        select.appendChild(option);
-                        
-                        const option2 = document.createElement("option");
-                        option2.value = kolektor;
-                        option2.textContent = kolektor;
-                        historySelect.appendChild(option2);
+                    const s1 = document.getElementById("kolektorSelect");
+                    const s2 = document.getElementById("historyKolektorFilter");
+                    result.data.forEach(k => {
+                        [s1, s2].forEach(s => {
+                            const o = document.createElement("option");
+                            o.value = o.textContent = k;
+                            s.appendChild(o);
+                        });
                     });
                 }
-            } catch (error) {
-                console.error("Error:", error);
-                showToast("Gagal memuat daftar kolektor", "error");
-            }
+            } catch (e) { console.error(e); }
         }
-        
-        // AMBIL TARGET AWAL (SEMUA DATA, TERMASUK YANG SUDAH BAYAR)
-        async function loadTargetAwal(kolektor) {
-            try {
-                const response = await fetch(`${SCRIPT_URL}?action=getTargetAwal&kolektor=${encodeURIComponent(kolektor)}`);
-                const result = await response.json();
-                
-                if (result.status === "success") {
-                    targetTotalTagihan = result.target;
-                    document.getElementById("totalTagihan").innerHTML = formatRupiah(targetTotalTagihan);
-                }
-            } catch (error) {
-                console.error("Error loading target:", error);
-            }
-        }
-        
+
+        // Ambil Data Berdasarkan Kolektor
         async function loadDataByKolektor(kolektor) {
             if (!kolektor) return;
-            
-            // LOAD TARGET AWAL (TIDAK BERUBAH)
-            await loadTargetAwal(kolektor);
-            
-            document.getElementById("wpList").innerHTML = `
-                <div class="loading">
-                    <div class="spinner"></div>
-                    <p>Memuat data untuk ${kolektor}...</p>
-                </div>
-            `;
+            const wpListDiv = document.getElementById("wpList");
+            wpListDiv.innerHTML = `<div style="text-align:center; padding:40px;"><div class="spinner" style="border-top-color:#667eea"></div><p style="margin-top:10px;">Menyelaraskan Data...</p></div>`;
             
             try {
-                const response = await fetch(`${SCRIPT_URL}?action=getData&kolektor=${encodeURIComponent(kolektor)}`);
-                const result = await response.json();
+                // Fetch data dan summary sekaligus
+                const res = await fetch(`${SCRIPT_URL}?action=getData&kolektor=${encodeURIComponent(kolektor)}&token=${getToken()}`);
+                const result = await res.json();
                 
                 if (result.status === "success") {
                     allWpData = result.data;
+                    serverSummary = result.summary; // Data fresh dari server
+
+                    // Ambil target statis
+                    const resT = await fetch(`${SCRIPT_URL}?action=getTargetAwal&kolektor=${encodeURIComponent(kolektor)}&token=${getToken()}`);
+                    const targetResult = await resT.json();
+                    targetKetetapanGlobal = targetResult.target || 0;
+                    
                     renderWpList();
                     updateStats();
                 } else {
-                    showToast(result.message || "Gagal memuat data", "error");
+                    showToast(result.message, "error");
                 }
-            } catch (error) {
-                console.error("Error:", error);
-                showToast("Gagal memuat data pajak", "error");
-                document.getElementById("wpList").innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-exclamation-triangle" style="font-size: 48px;"></i>
-                        <p>Gagal memuat data</p>
-                    </div>
-                `;
+            } catch (e) { 
+                showToast("Gagal menyambung ke server", "error"); 
+                wpListDiv.innerHTML = `<div style="text-align:center; color:#ff6b6b; padding:20px;">Gagal memuat data. Periksa koneksi atau Token.</div>`;
             }
         }
-        
-        async function loadHistory() {
+
+        function renderWpList() {
+            const container = document.getElementById("wpList");
+            const query = document.getElementById("searchInput").value.toLowerCase();
+            const filtered = allWpData.filter(i => i.nop.includes(query) || i.nama.toLowerCase().includes(query));
+            
+            if (filtered.length === 0) {
+                container.innerHTML = `<div style="text-align:center; color:#999; padding:40px;"><i class="fas fa-search-minus" style="font-size:30px; margin-bottom:10px;"></i><p>Warga tidak ditemukan</p></div>`;
+                return;
+            }
+
+            container.innerHTML = filtered.map(item => {
+                const inCart = cart.some(c => c.nop === item.nop);
+                return `
+                    <div class="wp-item ${inCart ? 'in-cart' : ''}">
+                        ${inCart ? '<span class="selected-badge"><i class="fas fa-check-circle"></i> TERPILIH</span>' : ''}
+                        <div class="wp-info">
+                            <div class="wp-nop">${item.nop}</div>
+                            <div class="wp-name">${item.nama}</div>
+                            <div class="wp-amount">Ketetapan: ${formatRupiah(item.ketetapan)}</div>
+                        </div>
+                        <div class="action-buttons">
+                            <button class="add-to-cart-btn" onclick="addToCart('${item.nop}', false)" ${inCart ? 'disabled' : ''}>
+                                <i class="fas fa-user-check"></i> Kolektor
+                            </button>
+                            <button class="self-pay-btn" onclick="addToCart('${item.nop}', true)" ${inCart ? 'disabled' : ''}>
+                                <i class="fas fa-walking"></i> Bayar Sendiri
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join("");
+        }
+
+        function updateStats() {
+            document.getElementById("totalWp").innerText = allWpData.length;
+            document.getElementById("totalTagihan").innerText = formatRupiah(targetKetetapanGlobal);
+            
+            // LOGIKA FIXED SISA TAGIHAN:
+            // Sisa dari Server - Total Ketetapan yang masuk keranjang
+            let inCartKetetapan = cart.reduce((s, i) => s + i.ketetapan, 0);
+            let rawSisa = serverSummary.totalSisa - inCartKetetapan;
+            
+            document.getElementById("sisaTagihan").innerText = formatRupiah(Math.max(0, rawSisa));
+            document.getElementById("totalLunas").innerText = formatRupiah(serverSummary.totalLunas);
+            
+            // Update Tampilan Keranjang
+            const totalBayar = cart.reduce((s, i) => s + (isDiskonValid() ? i.disc : i.ketetapan), 0);
+            document.getElementById("cartTotal").innerText = formatRupiah(totalBayar);
+            document.getElementById("payBtn").disabled = cart.length === 0;
+            document.getElementById("payBtn").innerHTML = cart.length > 0 ? `<i class="fas fa-check-circle"></i> BAYAR SEKARANG` : `PILIH WAJIB PAJAK`;
+        }
+
+        function addToCart(nop, isSelfPay) {
+            const item = allWpData.find(i => i.nop === nop);
+            if (item && !cart.some(c => c.nop === nop)) {
+                cart.push({ ...item, isSelfPay });
+                renderCart();
+                renderWpList(); // Tambahkan ini agar kartu langsung berubah
+                showToast(`${item.nama} masuk ke keranjang`);
+            }
+        }
+
+        function removeFromCart(nop) {
+            cart = cart.filter(c => c.nop !== nop);
+            renderCart();
+            renderWpList();
+        }
+
+        function clearCart() { 
+            cart = []; 
+            renderCart(); 
+            renderWpList(); // Tambahkan ini agar semua kartu kembali normal
+        }
+
+        function renderCart() {
+            const container = document.getElementById("cartItems");
+            if (cart.length === 0) {
+                container.innerHTML = `<p style="text-align:center; color:#999; padding:20px;">Keranjang kosong</p>`;
+            } else {
+                container.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div style="flex:1">
+                            <div style="font-weight:700; font-size:14px;">${item.nama}</div>
+                            <span class="cart-item-type ${item.isSelfPay?'self-pay':''}">${item.isSelfPay ? 'BAYAR SENDIRI' : 'VIA KOLEKTOR'}</span>
+                        </div>
+                        <div style="font-weight:700; color:#667eea; margin:0 10px;">${formatRupiah(isDiskonValid() ? item.disc : item.ketetapan)}</div>
+                        <button onclick="removeFromCart('${item.nop}')" style="background:none; border:none; color:#ff6b6b; cursor:pointer; font-size:18px;"><i class="fas fa-times-circle"></i></button>
+                    </div>
+                `).join("");
+            }
+            updateStats();
+        }
+
+        async function submitPayment() {
+            if (!currentKolektor || cart.length === 0) return;
+            const btn = document.getElementById("payBtn");
+            const originalText = btn.innerHTML;
+            btn.disabled = true;
+            btn.innerHTML = `<div class="spinner"></div> Memproses...`;
+            
             try {
-                const response = await fetch(`${SCRIPT_URL}?action=getHistory`);
-                const result = await response.json();
+                // Gunakan POST (Mode no-cors untuk Apps Script)
+                await fetch(SCRIPT_URL, {
+                    method: "POST", 
+                    mode: "no-cors", 
+                    cache: "no-cache",
+                    body: JSON.stringify({ 
+                        token: getToken(), 
+                        kolektor: currentKolektor, 
+                        items: cart, 
+                        tanggalBayar: new Date().toISOString().split('T')[0], 
+                        pakaiDiskon: isDiskonValid() 
+                    })
+                });
+                
+                showToast("Pembayaran Berhasil Diproses!", "success");
+                cart = []; 
+                renderCart();
+                await loadDataByKolektor(currentKolektor);
+                if (document.getElementById("pageRiwayat").classList.contains("active")) loadHistory();
+            } catch (e) { 
+                showToast("Gagal memproses pembayaran", "error"); 
+            } finally { 
+                btn.disabled = false; 
+                btn.innerHTML = originalText; 
+            }
+        }
+
+        async function loadHistory() {
+            const tbody = document.getElementById("historyTableBody");
+            tbody.innerHTML = `<tr><td colspan="3" style="text-align:center;"><div class="spinner" style="border-top-color:#667eea"></div></td></tr>`;
+            try {
+                const res = await fetch(`${SCRIPT_URL}?action=getHistory&token=${getToken()}`);
+                const result = await res.json();
                 if (result.status === "success") {
                     allHistory = result.data;
                     renderHistory();
                 }
-            } catch (error) {
-                console.error("Error loading history:", error);
+            } catch (e) {
+                tbody.innerHTML = `<tr><td colspan="3" style="text-align:center; color:#ff6b6b;">Gagal memuat riwayat.</td></tr>`;
             }
         }
-        
-        function renderWpList() {
-            let filteredData = [...allWpData];
-            
-            if (searchQuery) {
-                const query = searchQuery.toLowerCase();
-                filteredData = filteredData.filter(item => 
-                    item.nop.toLowerCase().includes(query) || 
-                    item.nama.toLowerCase().includes(query)
-                );
-            }
-            
-            if (currentFilter === "cart") {
-                filteredData = filteredData.filter(item => cart.some(c => c.nop === item.nop));
-            } else if (currentFilter === "uncart") {
-                filteredData = filteredData.filter(item => !cart.some(c => c.nop === item.nop));
-            }
-            
-            if (filteredData.length === 0) {
-                document.getElementById("wpList").innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-inbox" style="font-size: 48px;"></i>
-                        <p>Tidak ada data</p>
-                    </div>
-                `;
-                return;
-            }
-            
-            const diskonValid = isDiskonValid();
-            
-            document.getElementById("wpList").innerHTML = filteredData.map(item => {
-                const isInCart = cart.some(c => c.nop === item.nop);
-                return `
-                    <div class="wp-item ${isInCart ? 'disabled' : ''}" data-nop="${item.nop}">
-                        <input type="checkbox" class="wp-checkbox" 
-                               ${isInCart ? 'checked disabled' : ''}
-                               onchange="toggleSelectWP('${item.nop}', this.checked)">
-                        <div class="wp-info">
-                            <div class="wp-nop">${item.nop}</div>
-                            <div class="wp-name">${item.nama}</div>
-                            <div class="wp-amount">
-                                Ketetapan: ${formatRupiah(item.ketetapan)}
-                                ${diskonValid ? `<span style="font-size: 11px; color: #00b09b; margin-left: 8px;">(Diskon: ${formatRupiah(item.disc)})</span>` : ''}
-                            </div>
-                        </div>
-                        <div class="action-buttons">
-                            <button class="add-to-cart-btn" onclick="addToCart('${item.nop}', false)" ${isInCart ? 'disabled style="opacity:0.5"' : ''}>
-                                <i class="fas fa-cart-plus"></i> Kolektor
-                            </button>
-                            <button class="self-pay-btn" onclick="addToCart('${item.nop}', true)" ${isInCart ? 'disabled style="opacity:0.5"' : ''}>
-                                <i class="fas fa-university"></i> Bayar Sendiri
-                            </button>
-                        </div>
-                    </div>
-                `;
-            }).join("");
-        }
-        
-        function renderCart() {
-            const cartContainer = document.getElementById("cartItems");
-            
-            if (cart.length === 0) {
-                cartContainer.innerHTML = `
-                    <div class="empty-state">
-                        <i class="fas fa-shopping-cart" style="font-size: 48px; margin-bottom: 16px;"></i>
-                        <p>Keranjang masih kosong</p>
-                        <p style="font-size: 12px;">Pilih wajib pajak untuk ditambahkan</p>
-                    </div>
-                `;
-                document.getElementById("cartTotal").innerHTML = formatRupiah(0);
-                document.getElementById("cartCount").innerHTML = "0";
-                return;
-            }
-            
-            let total = 0;
-            cartContainer.innerHTML = cart.map(item => {
-                const nilai = getNilaiDibayar(item);
-                total += nilai;
-                return `
-                    <div class="cart-item">
-                        <div class="cart-item-info">
-                            <div class="cart-item-name">${item.nama}</div>
-                            <div class="cart-item-nop">${item.nop}</div>
-                            ${item.isSelfPay ? '<span class="cart-item-type">Bayar Sendiri</span>' : '<span class="cart-item-type" style="background:#667eea;">Via Kolektor</span>'}
-                        </div>
-                        <div class="cart-item-price">${formatRupiah(nilai)}</div>
-                        <button class="remove-item" onclick="removeFromCart('${item.nop}')">
-                            <i class="fas fa-trash-alt"></i>
-                        </button>
-                    </div>
-                `;
-            }).join("");
-            
-            document.getElementById("cartTotal").innerHTML = formatRupiah(total);
-            document.getElementById("cartCount").innerHTML = cart.length;
-            
-            renderWpList();
-            updateStats();
-        }
-        
+
         function renderHistory() {
-            let filteredHistory = [...allHistory];
-            
-            const kolektorFilter = document.getElementById("historyKolektorFilter").value;
-            const dateFilter = document.getElementById("historyDateFilter").value;
-            
-            if (kolektorFilter) {
-                filteredHistory = filteredHistory.filter(h => h.kolektor === kolektorFilter);
-            }
-            if (dateFilter) {
-                filteredHistory = filteredHistory.filter(h => h.tanggal === dateFilter);
-            }
-            
-            filteredHistory.sort((a, b) => new Date(b.tanggal) - new Date(a.tanggal));
-            
             const tbody = document.getElementById("historyTableBody");
+            const kFilter = document.getElementById("historyKolektorFilter").value;
+            const dFilter = document.getElementById("historyDateFilter").value;
             
-            if (filteredHistory.length === 0) {
-                tbody.innerHTML = `
-                    <tr>
-                        <td colspan="3" class="empty-state">
-                            <i class="fas fa-inbox" style="font-size: 48px;"></i>
-                            <p>Tidak ada riwayat</p>
-                          </td>
-                    </tr>
-                `;
-                document.getElementById("totalSetor").innerHTML = formatRupiah(0);
-                document.getElementById("totalTransaksi").innerHTML = "0";
+            let filtered = allHistory;
+            if (kFilter) filtered = filtered.filter(h => h.kolektor === kFilter);
+            if (dFilter) filtered = filtered.filter(h => h.tanggal === dFilter);
+            
+            // Hitung Total Summary untuk Riwayat
+            let totalSetoranRiwayat = filtered.reduce((sum, h) => sum + h.totalSetor, 0);
+            document.getElementById("totalSetorApp").innerText = formatRupiah(totalSetoranRiwayat);
+            document.getElementById("totalTransaksiApp").innerText = filtered.length;
+
+            if(filtered.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="3" style="text-align:center; color:#999; padding:20px;">Riwayat tidak ditemukan.</td></tr>`;
                 return;
             }
-            
-            let totalSetor = 0;
-            tbody.innerHTML = filteredHistory.map(h => {
-                totalSetor += h.totalSetor;
-                return `
-                    <tr class="history-row">
-                        <td>${formatDate(h.tanggal)}</td>
-                        <td><strong>${h.kolektor}</strong></td>
-                        <td style="font-weight: 600; color: #00b09b;">${formatRupiah(h.totalSetor)}</td>
-                    </tr>
-                `;
-            }).join("");
-            
-            document.getElementById("totalSetor").innerHTML = formatRupiah(totalSetor);
-            document.getElementById("totalTransaksi").innerHTML = filteredHistory.length;
+
+            tbody.innerHTML = filtered.map(h => `
+                <tr class="history-row">
+                    <td>${formatDate(h.tanggal)}</td>
+                    <td style="font-weight:600;">${h.kolektor}</td>
+                    <td style="text-align:right; font-weight:800; color:#00b09b;">${formatRupiah(h.totalSetor)}</td>
+                </tr>
+            `).join("");
         }
-        
-        function updateStats() {
-            if (allWpData.length === 0) {
-                document.getElementById("statsGrid").style.display = "none";
-                return;
-            }
-            
-            document.getElementById("statsGrid").style.display = "grid";
-            document.getElementById("totalWp").innerHTML = allWpData.length;
-            
-            // TOTAL TAGIHAN (TARGET) - SUDAH DI SET SAAT LOAD TARGET AWAL
-            document.getElementById("totalTagihan").innerHTML = formatRupiah(targetTotalTagihan);
-            
-            // Hitung total yang akan dibayar dari keranjang
-            let totalDiKeranjang = cart.reduce((sum, item) => sum + getNilaiDibayar(item), 0);
-            
-            // SISA TAGIHAN = TARGET - yang akan dibayar (di keranjang)
-            let sisaTagihan = targetTotalTagihan - totalDiKeranjang;
-            document.getElementById("sisaTagihan").innerHTML = formatRupiah(sisaTagihan);
-            document.getElementById("cartCount").innerHTML = cart.length;
-        }
-        
-        function toggleSelectWP(nop, isChecked) {
-            if (isChecked) {
-                addToCart(nop, false);
-            }
-        }
-        
-        function addToCart(nop, isSelfPay) {
-            const item = allWpData.find(i => i.nop === nop);
-            if (item && !cart.some(c => c.nop === nop)) {
-                cart.push({ 
-                    ...item, 
-                    isSelfPay: isSelfPay
-                });
-                renderCart();
-                const pesan = isSelfPay ? `${item.nama} ditambahkan (Bayar Sendiri ke Bank)` : `${item.nama} ditambahkan (Via Kolektor)`;
-                showToast(pesan);
-            } else if (cart.some(c => c.nop === nop)) {
-                showToast(`${item.nama} sudah ada di keranjang`, "warning");
-            }
-        }
-        
-        function removeFromCart(nop) {
-            const item = cart.find(c => c.nop === nop);
-            cart = cart.filter(c => c.nop !== nop);
-            renderCart();
-            if (item) showToast(`${item.nama} dihapus dari keranjang`);
-        }
-        
-        function clearCart() {
-            if (cart.length === 0) return;
-            cart = [];
-            renderCart();
-            showToast("Keranjang dikosongkan");
-        }
-        
-        async function submitPayment() {
-            if (cart.length === 0) {
-                showToast("Keranjang kosong, pilih wajib pajak terlebih dahulu", "error");
-                return;
-            }
-            
-            if (!currentKolektor) {
-                showToast("Pilih kolektor terlebih dahulu", "error");
-                return;
-            }
-            
-            const payBtn = document.getElementById("payBtn");
-            payBtn.disabled = true;
-            payBtn.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Memproses...';
-            
-            const tanggalBayar = new Date().toISOString().split('T')[0];
-            const payload = {
-                kolektor: currentKolektor,
-                items: cart.map(item => ({
-                    nop: item.nop,
-                    nama: item.nama,
-                    ketetapan: item.ketetapan,
-                    disc: item.disc,
-                    isSelfPay: item.isSelfPay
-                })),
-                tanggalBayar: tanggalBayar,
-                pakaiDiskon: isDiskonValid()
-            };
-            
-            try {
-                await fetch(`${SCRIPT_URL}`, {
-                    method: "POST",
-                    mode: "no-cors",
-                    headers: {
-                        "Content-Type": "application/json"
-                    },
-                    body: JSON.stringify(payload)
-                });
-                
-                showToast(`Berhasil memproses ${cart.length} pembayaran`, "success");
-                
-                cart = [];
-                renderCart();
-                await loadDataByKolektor(currentKolektor);
-                await loadHistory();
-                
-            } catch (error) {
-                console.error("Error:", error);
-                showToast("Gagal memproses pembayaran", "error");
-            } finally {
-                payBtn.disabled = false;
-                payBtn.innerHTML = '<i class="fas fa-credit-card"></i> Bayar Sekarang';
-            }
-        }
-        
+
+        // --- Event Listeners ---
         document.getElementById("kolektorSelect").addEventListener("change", (e) => {
             currentKolektor = e.target.value;
-            if (currentKolektor) {
-                cart = [];
-                renderCart();
-                loadDataByKolektor(currentKolektor);
-            } else {
-                allWpData = [];
-                targetTotalTagihan = 0;
-                renderWpList();
-                document.getElementById("statsGrid").style.display = "none";
-            }
+            loadDataByKolektor(currentKolektor);
         });
-        
-        document.getElementById("searchInput").addEventListener("input", (e) => {
-            searchQuery = e.target.value;
-            renderWpList();
-        });
-        
-        document.getElementById("historyKolektorFilter").addEventListener("change", () => renderHistory());
-        document.getElementById("historyDateFilter").addEventListener("change", () => renderHistory());
-        
-        document.querySelectorAll(".filter-tab").forEach(tab => {
-            tab.addEventListener("click", (e) => {
-                document.querySelectorAll(".filter-tab").forEach(t => t.classList.remove("active"));
-                tab.classList.add("active");
-                currentFilter = tab.dataset.filter;
-                renderWpList();
-            });
-        });
-        
-        document.querySelectorAll(".nav-tab").forEach(tab => {
-            tab.addEventListener("click", (e) => {
+
+        document.getElementById("searchInput").addEventListener("input", renderWpList);
+        document.getElementById("historyKolektorFilter").addEventListener("change", renderHistory);
+        document.getElementById("historyDateFilter").addEventListener("change", renderHistory);
+
+        document.querySelectorAll(".nav-tab[data-page]").forEach(tab => {
+            tab.addEventListener("click", () => {
                 document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
                 tab.classList.add("active");
-                
                 const page = tab.dataset.page;
                 document.getElementById("pagePembayaran").classList.toggle("active", page === "pembayaran");
                 document.getElementById("pageRiwayat").classList.toggle("active", page === "riwayat");
-                
-                if (page === "riwayat") {
-                    loadHistory();
-                }
+                if (page === "riwayat") loadHistory();
             });
         });
-        
+
+        // Init
         loadKolektorList();
     </script>
 </body>
