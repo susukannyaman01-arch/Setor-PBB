@@ -7,357 +7,82 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
-            transition: all 0.3s ease;
-        }
-
-        body.dark {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%);
-        }
-
-        body.dark .glass-card {
-            background: rgba(30, 30, 50, 0.95);
-            backdrop-filter: blur(10px);
-            border: 1px solid rgba(255,255,255,0.1);
-        }
-
-        body.dark .glass-card h2,
-        body.dark .glass-card h3,
-        body.dark .glass-card label,
-        body.dark .wp-item .wp-name,
-        body.dark .cart-item .item-name,
-        body.dark .history-table th,
-        body.dark .history-table td {
-            color: #e0e0e0;
-        }
-
-        body.dark .wp-item,
-        body.dark .history-row {
-            background: rgba(50, 50, 70, 0.8);
-            border: 1px solid rgba(255,255,255,0.08);
-        }
-
-        body.dark .wp-item:hover {
-            background: rgba(70, 70, 90, 0.9);
-        }
-
-        body.dark .cart-item {
-            background: rgba(50, 50, 70, 0.8);
-            border-bottom: 1px solid rgba(255,255,255,0.08);
-        }
-
-        .container {
-            max-width: 1400px;
-            margin: 0 auto;
-        }
-
-        .glass-card {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(10px);
-            border-radius: 24px;
-            padding: 24px;
-            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
-            transition: all 0.3s ease;
-        }
-
-        .header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 24px;
-            flex-wrap: wrap;
-            gap: 16px;
-        }
-
-        .logo h1 {
-            font-size: 28px;
-            font-weight: 700;
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-
-        body.dark .logo h1 {
-            background: linear-gradient(135deg, #a8c0ff, #c084fc);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .header-actions {
-            display: flex;
-            gap: 12px;
-            align-items: center;
-        }
-
-        .token-input {
-            padding: 10px 15px;
-            border-radius: 10px;
-            border: 2px solid #ddd;
-            font-size: 13px;
-            width: 130px;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body { font-family: 'Inter', sans-serif; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); min-height: 100vh; padding: 20px; transition: all 0.3s ease; }
+        body.dark { background: linear-gradient(135deg, #1a1a2e 0%, #16213e 100%); }
+        body.dark .glass-card { background: rgba(30, 30, 50, 0.95); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
+        body.dark .glass-card h2, body.dark .glass-card h3, body.dark .glass-card label, body.dark .wp-item .wp-name, body.dark .cart-item .item-name, body.dark .history-table th, body.dark .history-table td { color: #e0e0e0; }
+        body.dark .wp-item, body.dark .history-row { background: rgba(50, 50, 70, 0.8); border: 1px solid rgba(255,255,255,0.08); }
+        body.dark .wp-item:hover { background: rgba(70, 70, 90, 0.9); }
+        body.dark .cart-item { background: rgba(50, 50, 70, 0.8); border-bottom: 1px solid rgba(255,255,255,0.08); }
+        .container { max-width: 1400px; margin: 0 auto; }
+        .glass-card { background: rgba(255, 255, 255, 0.95); backdrop-filter: blur(10px); border-radius: 24px; padding: 24px; box-shadow: 0 20px 40px rgba(0,0,0,0.1); transition: all 0.3s ease; }
+        .header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; flex-wrap: wrap; gap: 16px; }
+        .logo h1 { font-size: 28px; font-weight: 700; background: linear-gradient(135deg, #667eea, #764ba2); -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text; }
+        body.dark .logo h1 { background: linear-gradient(135deg, #a8c0ff, #c084fc); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        .header-actions { display: flex; gap: 12px; align-items: center; }
+        .token-input { padding: 10px 15px; border-radius: 10px; border: 2px solid #ddd; font-size: 13px; width: 130px; }
         body.dark .token-input { background: #2a2a3e; color: white; border-color: #444; }
-
-        .theme-toggle {
-            background: rgba(0,0,0,0.1);
-            border: none;
-            padding: 10px;
-            border-radius: 50%;
-            cursor: pointer;
-            font-size: 18px;
-            transition: all 0.3s ease;
-        }
-
-        body.dark .theme-toggle {
-            background: rgba(255,255,255,0.1);
-            color: #ffd700;
-        }
-
-        .kolektor-select {
-            padding: 12px 20px;
-            border-radius: 12px;
-            border: 2px solid #e0e0e0;
-            font-size: 16px;
-            background: white;
-            cursor: pointer;
-            min-width: 200px;
-        }
-
+        .theme-toggle { background: rgba(0,0,0,0.1); border: none; padding: 10px; border-radius: 50%; cursor: pointer; font-size: 18px; transition: all 0.3s ease; }
+        body.dark .theme-toggle { background: rgba(255,255,255,0.1); color: #ffd700; }
+        .kolektor-select { padding: 12px 20px; border-radius: 12px; border: 2px solid #e0e0e0; font-size: 16px; background: white; cursor: pointer; min-width: 200px; }
         body.dark .kolektor-select { background: #2a2a3e; color: #e0e0e0; border-color: #3a3a5e; }
-
-        .nav-tabs {
-            display: flex;
-            gap: 12px;
-            margin-bottom: 24px;
-            border-bottom: 2px solid rgba(0,0,0,0.1);
-            padding-bottom: 8px;
-        }
-
-        .nav-tab {
-            padding: 10px 24px;
-            background: none;
-            border: none;
-            font-size: 16px;
-            font-weight: 600;
-            cursor: pointer;
-            border-radius: 12px 12px 0 0;
-            transition: all 0.3s ease;
-            color: #666;
-        }
-
-        .nav-tab.active {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            color: white;
-        }
-        
+        .nav-tabs { display: flex; gap: 12px; margin-bottom: 24px; border-bottom: 2px solid rgba(0,0,0,0.1); padding-bottom: 8px; flex-wrap: wrap; }
+        .nav-tab { padding: 10px 24px; background: none; border: none; font-size: 16px; font-weight: 600; cursor: pointer; border-radius: 12px 12px 0 0; transition: all 0.3s ease; color: #666; }
+        .nav-tab.active { background: linear-gradient(135deg, #667eea, #764ba2); color: white; }
         body.dark .nav-tab { color: #aaa; }
         body.dark .nav-tab.active { color: white; }
-
         .page { display: none; }
         .page.active { display: block; }
-
-        .stats-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-
-        .stat-card {
-            background: rgba(255,255,255,0.95);
-            border-radius: 20px;
-            padding: 20px;
-            text-align: center;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
-        }
-
+        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; margin-bottom: 30px; }
+        .stat-card { background: rgba(255,255,255,0.95); border-radius: 20px; padding: 20px; text-align: center; box-shadow: 0 4px 15px rgba(0,0,0,0.1); }
         body.dark .stat-card { background: rgba(40,40,60,0.95); }
-
         .stat-card i { font-size: 32px; color: #667eea; margin-bottom: 10px; }
         .stat-card .stat-value { font-size: 26px; font-weight: 700; margin: 8px 0; }
         .stat-card .stat-label { font-size: 13px; color: #666; }
         body.dark .stat-card .stat-label { color: #ccc; }
-
-        .main-content {
-            display: grid;
-            grid-template-columns: 1fr 380px;
-            gap: 24px;
-        }
-
+        .main-content { display: grid; grid-template-columns: 1fr 380px; gap: 24px; }
         @media (max-width: 900px) { .main-content { grid-template-columns: 1fr; } }
-
-        .search-input {
-            width: 100%;
-            padding: 14px 20px;
-            border-radius: 12px;
-            border: 2px solid #e0e0e0;
-            margin-bottom: 20px;
-        }
-
+        .search-input { width: 100%; padding: 14px 20px; border-radius: 12px; border: 2px solid #e0e0e0; margin-bottom: 20px; }
         body.dark .search-input { background: #2a2a3e; border-color: #3a3a5e; color: #e0e0e0; }
-
         .wp-list { max-height: 500px; overflow-y: auto; }
-        
-        .wp-item {
-            display: flex;
-            align-items: center;
-            padding: 16px;
-            margin-bottom: 12px;
-            background: white;
-            border-radius: 16px;
-            border: 1px solid #e0e0e0;
-        }
-
+        .wp-item { display: flex; align-items: center; padding: 16px; margin-bottom: 12px; background: white; border-radius: 16px; border: 1px solid #e0e0e0; position: relative; }
         body.dark .wp-item { background: #1e293b; border-color: #334155; }
-
         .wp-info { flex: 1; }
         .wp-nop { font-size: 11px; color: #999; font-family: monospace; }
         .wp-name { font-weight: 600; font-size: 16px; margin: 4px 0; }
         .wp-amount { font-size: 14px; font-weight: 600; color: #667eea; }
-
-        .action-buttons {
-            display: flex;
-            gap: 5px;
-        }
-
-        .add-to-cart-btn {
-            background: linear-gradient(135deg, #667eea, #764ba2);
-            border: none;
-            padding: 10px 16px;
-            border-radius: 10px;
-            color: white;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .self-pay-btn {
-            background: #ff9800;
-            border: none;
-            padding: 10px 16px;
-            border-radius: 10px;
-            color: white;
-            font-size: 11px;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .add-to-cart-btn:hover, .self-pay-btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
-        .wp-item.in-cart {
-            opacity: 0.5;
-            filter: grayscale(1);
-            pointer-events: none;
-            background: #f8f9fa !important;
-            position: relative;
-        }
-
-        .selected-badge {
-            position: absolute;
-            top: 10px;
-            right: 15px;
-            background: #00b09b;
-            color: white;
-            font-size: 10px;
-            font-weight: 800;
-            padding: 4px 10px;
-            border-radius: 20px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-
+        .action-buttons { display: flex; gap: 5px; }
+        .add-to-cart-btn { background: linear-gradient(135deg, #667eea, #764ba2); border: none; padding: 10px 16px; border-radius: 10px; color: white; font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .self-pay-btn { background: #ff9800; border: none; padding: 10px 16px; border-radius: 10px; color: white; font-size: 11px; font-weight: 600; cursor: pointer; transition: all 0.2s; }
+        .add-to-cart-btn:hover, .self-pay-btn:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+        .wp-item.in-cart { opacity: 0.5; filter: grayscale(1); pointer-events: none; background: #f8f9fa !important; }
+        .selected-badge { position: absolute; top: 10px; right: 15px; background: #00b09b; color: white; font-size: 10px; font-weight: 800; padding: 4px 10px; border-radius: 20px; }
         .cart-items { max-height: 350px; overflow-y: auto; }
-        .cart-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 12px 0;
-            border-bottom: 1px solid #e0e0e0;
-        }
-
-        .cart-item-type {
-            font-size: 9px;
-            padding: 2px 6px;
-            border-radius: 8px;
-            background: #667eea;
-            color: white;
-        }
-
-        .cart-item-type.self-pay {
-            background: #ff9800;
-        }
-
-        .pay-btn {
-            width: 100%;
-            background: linear-gradient(135deg, #00b09b, #96c93d);
-            border: none;
-            padding: 16px;
-            border-radius: 14px;
-            color: white;
-            font-size: 16px;
-            font-weight: 800;
-            cursor: pointer;
-            margin-top: 20px;
-            box-shadow: 0 4px 15px rgba(0,176,155,0.3);
-            transition: all 0.3s;
-        }
-
-        .pay-btn:hover:not(:disabled) {
-            transform: scale(1.02);
-            box-shadow: 0 6px 20px rgba(0,176,155,0.4);
-        }
-
+        .cart-item { display: flex; justify-content: space-between; align-items: center; padding: 12px 0; border-bottom: 1px solid #e0e0e0; }
+        .cart-item-type { font-size: 9px; padding: 2px 6px; border-radius: 8px; background: #667eea; color: white; }
+        .cart-item-type.self-pay { background: #ff9800; }
+        .pay-btn { width: 100%; background: linear-gradient(135deg, #00b09b, #96c93d); border: none; padding: 16px; border-radius: 14px; color: white; font-size: 16px; font-weight: 800; cursor: pointer; margin-top: 20px; box-shadow: 0 4px 15px rgba(0,176,155,0.3); transition: all 0.3s; }
+        .pay-btn:hover:not(:disabled) { transform: scale(1.02); box-shadow: 0 6px 20px rgba(0,176,155,0.4); }
         .pay-btn:disabled { opacity: 0.5; cursor: not-allowed; }
-
-        .history-table { width: 100%; border-collapse: collapse; }
+        .history-table { width: 100%; border-collapse: collapse; min-width: 600px; }
         .history-table th, .history-table td { padding: 14px; text-align: left; border-bottom: 1px solid #e0e0e0; }
         .history-table th { background: linear-gradient(135deg, #667eea, #764ba2); color: white; font-size: 12px; text-transform: uppercase; letter-spacing: 1px; }
-        
-        .toast {
-            position: fixed;
-            bottom: 30px; right: 30px;
-            padding: 15px 25px;
-            border-radius: 12px;
-            color: white;
-            font-weight: 600;
-            z-index: 1000;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            animation: slideUp 0.3s ease-out;
-        }
-
+        .toast { position: fixed; bottom: 30px; right: 30px; padding: 15px 25px; border-radius: 12px; color: white; font-weight: 600; z-index: 1000; box-shadow: 0 10px 30px rgba(0,0,0,0.2); animation: slideUp 0.3s ease-out; }
         @keyframes slideUp { from { transform: translateY(100px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
-
-        .spinner {
-            width: 24px; height: 24px;
-            border: 3px solid rgba(255,255,255,0.3);
-            border-top-color: white;
-            border-radius: 50%;
-            animation: spin 0.8s linear infinite;
-            display: inline-block;
-            vertical-align: middle;
-        }
+        .spinner { width: 24px; height: 24px; border: 3px solid rgba(255,255,255,0.3); border-top-color: white; border-radius: 50%; animation: spin 0.8s linear infinite; display: inline-block; vertical-align: middle; }
         @keyframes spin { to { transform: rotate(360deg); } }
+        
+        /* Recap Specific Styles */
+        .recap-input-group { display: flex; gap: 15px; align-items: center; margin-bottom: 20px; flex-wrap: wrap; background: rgba(102, 126, 234, 0.05); padding: 15px; border-radius: 15px; }
+        .recap-input-group label { font-size: 13px; font-weight: 700; color: #555; }
+        .recap-input { padding: 8px 12px; border-radius: 8px; border: 2px solid #ddd; width: 80px; text-align: center; font-weight: 700; }
+        .negative-val { color: #ff6b6b; font-weight: 700; }
+        .positive-val { color: #00b09b; font-weight: 700; }
     </style>
 </head>
 <body>
     <div class="container">
-        <!-- Header -->
         <div class="glass-card" style="margin-bottom: 24px;">
             <div class="header">
                 <div class="logo">
@@ -385,11 +110,15 @@
                     <i class="fas fa-credit-card"></i> Pembayaran
                 </button>
                 <button class="nav-tab" data-page="riwayat">
-                    <i class="fas fa-history"></i> Riwayat Pembayaran
+                    <i class="fas fa-history"></i> Riwayat Aplikasi
+                </button>
+                <button class="nav-tab" data-page="rekap">
+                    <i class="fas fa-chart-pie"></i> Rekap Global
                 </button>
             </div>
         </div>
 
+        <!-- PAGE: PEMBAYARAN -->
         <div id="pagePembayaran" class="page active">
             <div class="stats-grid">
                 <div class="stat-card">
@@ -405,12 +134,12 @@
                 <div class="stat-card" style="border-bottom: 3px solid #ff6b6b;">
                     <i class="fas fa-clock" style="color: #ff6b6b;"></i>
                     <div class="stat-value" id="sisaTagihan" style="color: #ff6b6b;">Rp0</div>
-                    <div class="stat-label">Sisa Belum Bayar (Ketetapan)</div>
+                    <div class="stat-label">Sisa Belum Bayar</div>
                 </div>
                 <div class="stat-card" style="border-bottom: 3px solid #00b09b;">
                     <i class="fas fa-check-double" style="color: #00b09b;"></i>
                     <div class="stat-value" id="totalLunas" style="color: #00b09b;">Rp0</div>
-                    <div class="stat-label">Sudah Terkumpul (Ketetapan)</div>
+                    <div class="stat-label">Sudah Terkumpul</div>
                 </div>
             </div>
 
@@ -436,33 +165,18 @@
                             <span>Total Setor:</span>
                             <span id="cartTotal" style="color:#667eea;">Rp0</span>
                         </div>
-                        <p style="font-size:11px; color:#999; margin-top:5px;">*Total di atas adalah nilai setelah diskon (jika ada)</p>
-                        <!-- Minimal: Hanya tambah input tanggal -->
-                        <input type="date" id="paymentDate" class="token-input" style="width:100%; margin-bottom:10px;">
+                        <input type="date" id="paymentDate" class="token-input" style="width:100%; margin: 15px 0;">
                         <button class="pay-btn" id="payBtn" onclick="submitPayment()" disabled>Bayar Sekarang</button>
                     </div>
                 </div>
             </div>
         </div>
 
+        <!-- PAGE: RIWAYAT -->
         <div id="pageRiwayat" class="page">
             <div class="glass-card">
                 <h3 style="margin-bottom: 20px;">Riwayat Pembayaran Aplikasi</h3>
-                
-                <!-- Summary Riwayat -->
-                <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 15px; margin-bottom: 25px;">
-                    <div style="background: rgba(102, 126, 234, 0.1); padding: 15px; border-radius: 15px; border-left: 4px solid #667eea;">
-                        <div style="font-size: 11px; color: #666; font-weight: 600;">TOTAL SETORAN (KETETAPAN)</div>
-                        <div id="totalSetorApp" style="font-size: 20px; font-weight: 800; color: #667eea;">Rp0</div>
-                    </div>
-                    <div style="background: rgba(0, 176, 155, 0.1); padding: 15px; border-radius: 15px; border-left: 4px solid #00b09b;">
-                        <div style="font-size: 11px; color: #666; font-weight: 600;">JUMLAH TRANSAKSI</div>
-                        <div id="totalTransaksiApp" style="font-size: 20px; font-weight: 800; color: #00b09b;">0</div>
-                    </div>
-                </div>
-
                 <div style="display:flex; gap:10px; margin-bottom:20px; flex-wrap: wrap; align-items: center;">
-                    <label style="font-size: 12px; font-weight: 700; color: #666;">FILTER:</label>
                     <select id="historyKolektorFilter" class="kolektor-select" style="min-width:150px; font-size:14px; padding: 8px 15px;">
                         <option value="">Semua Kolektor</option>
                     </select>
@@ -474,7 +188,7 @@
                             <tr>
                                 <th>Tanggal</th>
                                 <th>Kolektor</th>
-                                <th style="text-align:right;">Total Setor (Ketetapan)</th>
+                                <th style="text-align:right;">Total Setor</th>
                             </tr>
                         </thead>
                         <tbody id="historyTableBody"></tbody>
@@ -482,17 +196,57 @@
                 </div>
             </div>
         </div>
+
+        <!-- PAGE: REKAP GLOBAL -->
+        <div id="pageRekap" class="page">
+            <div class="glass-card">
+                <h3 style="margin-bottom: 10px;">Rekapitulasi Target Semua Kolektor</h3>
+                <p style="font-size: 12px; color: #888; margin-bottom: 20px;">Data dihitung berdasarkan pencatatan lunas di Sheet Master</p>
+                
+                <div class="recap-input-group">
+                    <div>
+                        <label>TARGET % : </label>
+                        <input type="number" id="targetPercentInput" class="recap-input" value="20" min="0" max="100">
+                        <span style="font-weight:700;">%</span>
+                    </div>
+                    <div>
+                        <label>BATAS TANGGAL : </label>
+                        <input type="text" id="targetDateLabel" class="token-input" value="30 April 2026" style="width: 150px;">
+                    </div>
+                    <button class="add-to-cart-btn" onclick="loadGlobalRecap()" style="padding: 8px 15px;">
+                        <i class="fas fa-sync"></i> Refresh Data
+                    </button>
+                </div>
+
+                <div style="overflow-x:auto;">
+                    <table class="history-table" id="recapTable">
+                        <thead>
+                            <tr>
+                                <th>NO</th>
+                                <th>NAMA PEMUNGUT</th>
+                                <th style="text-align:center;">JML SPPT</th>
+                                <th style="text-align:right;">JATAH PBB</th>
+                                <th style="text-align:right;">SETORAN S/D SKRG</th>
+                                <th style="text-align:right;">SISA TOTAL</th>
+                                <th style="text-align:center;">%</th>
+                                <th style="text-align:right;" id="targetColHeader">KEKURANGAN TARGET</th>
+                            </tr>
+                        </thead>
+                        <tbody id="recapTableBody"></tbody>
+                        <tfoot id="recapTableFoot"></tfoot>
+                    </table>
+                </div>
+            </div>
+        </div>
     </div>
 
     <script>
-        // ==================== KONFIGURASI ====================
         const SCRIPT_URL = "https://script.google.com/macros/s/AKfycbwcwksiWuvG5_C0RDwuf4PuxB589WWcmeGy7E6bL5EbDiEvAtwr1c9caxcH1Bk8BtdC/exec";
         
         let allWpData = [];
         let cart = [];
         let currentKolektor = "";
         let serverSummary = { totalSisa: 0, totalLunas: 0 };
-        let allHistory = [];
         let targetKetetapanGlobal = 0;
         
         const formatRupiah = (angka) => new Intl.NumberFormat('id-ID', {
@@ -509,10 +263,7 @@
             toast.style.background = type === 'success' ? '#00b09b' : '#ff6b6b';
             toast.innerHTML = `<i class="fas fa-${type==='success'?'check-circle':'exclamation-circle'}"></i> ${message}`;
             document.body.appendChild(toast);
-            setTimeout(() => {
-                toast.style.opacity = '0';
-                setTimeout(() => toast.remove(), 400);
-            }, 3000);
+            setTimeout(() => { toast.style.opacity = '0'; setTimeout(() => toast.remove(), 400); }, 3000);
         }
 
         function toggleTheme() {
@@ -521,9 +272,6 @@
         }
         if (localStorage.getItem('theme') === 'dark') document.body.classList.add('dark');
 
-        function isDiskonValid() { return new Date() <= new Date(2026, 4, 31); }
-
-        // Load Daftar Kolektor
         async function loadKolektorList() {
             try {
                 const res = await fetch(`${SCRIPT_URL}?action=getKolektorList&token=${getToken()}`);
@@ -542,47 +290,33 @@
             } catch (e) { console.error(e); }
         }
 
-        // Ambil Data Berdasarkan Kolektor
         async function loadDataByKolektor(kolektor) {
             if (!kolektor) return;
             const wpListDiv = document.getElementById("wpList");
             wpListDiv.innerHTML = `<div style="text-align:center; padding:40px;"><div class="spinner" style="border-top-color:#667eea"></div><p style="margin-top:10px;">Menyelaraskan Data...</p></div>`;
-            
             try {
-                // Fetch data dan summary sekaligus
                 const res = await fetch(`${SCRIPT_URL}?action=getData&kolektor=${encodeURIComponent(kolektor)}&token=${getToken()}`);
                 const result = await res.json();
-                
                 if (result.status === "success") {
                     allWpData = result.data;
-                    serverSummary = result.summary; // Data fresh dari server
-
-                    // Ambil target statis
+                    serverSummary = result.summary;
                     const resT = await fetch(`${SCRIPT_URL}?action=getTargetAwal&kolektor=${encodeURIComponent(kolektor)}&token=${getToken()}`);
                     const targetResult = await resT.json();
                     targetKetetapanGlobal = targetResult.target || 0;
-                    
                     renderWpList();
                     updateStats();
-                } else {
-                    showToast(result.message, "error");
                 }
-            } catch (e) { 
-                showToast("Gagal menyambung ke server", "error"); 
-                wpListDiv.innerHTML = `<div style="text-align:center; color:#ff6b6b; padding:20px;">Gagal memuat data. Periksa koneksi atau Token.</div>`;
-            }
+            } catch (e) { showToast("Gagal menyambung ke server", "error"); }
         }
 
         function renderWpList() {
             const container = document.getElementById("wpList");
             const query = document.getElementById("searchInput").value.toLowerCase();
             const filtered = allWpData.filter(i => i.nop.includes(query) || i.nama.toLowerCase().includes(query));
-            
             if (filtered.length === 0) {
-                container.innerHTML = `<div style="text-align:center; color:#999; padding:40px;"><i class="fas fa-search-minus" style="font-size:30px; margin-bottom:10px;"></i><p>Warga tidak ditemukan</p></div>`;
+                container.innerHTML = `<div style="text-align:center; color:#999; padding:40px;"><p>Warga tidak ditemukan</p></div>`;
                 return;
             }
-
             container.innerHTML = filtered.map(item => {
                 const inCart = cart.some(c => c.nop === item.nop);
                 return `
@@ -594,35 +328,22 @@
                             <div class="wp-amount">Ketetapan: ${formatRupiah(item.ketetapan)}</div>
                         </div>
                         <div class="action-buttons">
-                            <button class="add-to-cart-btn" onclick="addToCart('${item.nop}', false)" ${inCart ? 'disabled' : ''}>
-                                <i class="fas fa-user-check"></i> Kolektor
-                            </button>
-                            <button class="self-pay-btn" onclick="addToCart('${item.nop}', true)" ${inCart ? 'disabled' : ''}>
-                                <i class="fas fa-walking"></i> Bayar Sendiri
-                            </button>
+                            <button class="add-to-cart-btn" onclick="addToCart('${item.nop}', false)" ${inCart ? 'disabled' : ''}>Kolektor</button>
+                            <button class="self-pay-btn" onclick="addToCart('${item.nop}', true)" ${inCart ? 'disabled' : ''}>Bayar Sendiri</button>
                         </div>
-                    </div>
-                `;
+                    </div>`;
             }).join("");
         }
 
         function updateStats() {
             document.getElementById("totalWp").innerText = allWpData.length;
             document.getElementById("totalTagihan").innerText = formatRupiah(targetKetetapanGlobal);
-            
-            // LOGIKA FIXED SISA TAGIHAN:
-            // Sisa dari Server - Total Ketetapan yang masuk keranjang
             let inCartKetetapan = cart.reduce((s, i) => s + i.ketetapan, 0);
-            let rawSisa = serverSummary.totalSisa - inCartKetetapan;
-            
-            document.getElementById("sisaTagihan").innerText = formatRupiah(Math.max(0, rawSisa));
+            document.getElementById("sisaTagihan").innerText = formatRupiah(Math.max(0, serverSummary.totalSisa - inCartKetetapan));
             document.getElementById("totalLunas").innerText = formatRupiah(serverSummary.totalLunas);
-            
-            // Update Tampilan Keranjang
-            const totalBayar = cart.reduce((s, i) => s + (isDiskonValid() ? i.disc : i.ketetapan), 0);
+            const totalBayar = cart.reduce((s, i) => s + i.ketetapan, 0);
             document.getElementById("cartTotal").innerText = formatRupiah(totalBayar);
             document.getElementById("payBtn").disabled = cart.length === 0;
-            document.getElementById("payBtn").innerHTML = cart.length > 0 ? `<i class="fas fa-check-circle"></i> BAYAR SEKARANG` : `PILIH WAJIB PAJAK`;
         }
 
         function addToCart(nop, isSelfPay) {
@@ -630,22 +351,13 @@
             if (item && !cart.some(c => c.nop === nop)) {
                 cart.push({ ...item, isSelfPay });
                 renderCart();
-                renderWpList(); // Tambahkan ini agar kartu langsung berubah
+                renderWpList();
                 showToast(`${item.nama} masuk ke keranjang`);
             }
         }
 
-        function removeFromCart(nop) {
-            cart = cart.filter(c => c.nop !== nop);
-            renderCart();
-            renderWpList();
-        }
-
-        function clearCart() { 
-            cart = []; 
-            renderCart(); 
-            renderWpList(); // Tambahkan ini agar semua kartu kembali normal
-        }
+        function removeFromCart(nop) { cart = cart.filter(c => c.nop !== nop); renderCart(); renderWpList(); }
+        function clearCart() { cart = []; renderCart(); renderWpList(); }
 
         function renderCart() {
             const container = document.getElementById("cartItems");
@@ -658,10 +370,9 @@
                             <div style="font-weight:700; font-size:14px;">${item.nama}</div>
                             <span class="cart-item-type ${item.isSelfPay?'self-pay':''}">${item.isSelfPay ? 'BAYAR SENDIRI' : 'VIA KOLEKTOR'}</span>
                         </div>
-                        <div style="font-weight:700; color:#667eea; margin:0 10px;">${formatRupiah(isDiskonValid() ? item.disc : item.ketetapan)}</div>
+                        <div style="font-weight:700; color:#667eea; margin:0 10px;">${formatRupiah(item.ketetapan)}</div>
                         <button onclick="removeFromCart('${item.nop}')" style="background:none; border:none; color:#ff6b6b; cursor:pointer; font-size:18px;"><i class="fas fa-times-circle"></i></button>
-                    </div>
-                `).join("");
+                    </div>`).join("");
             }
             updateStats();
         }
@@ -672,33 +383,20 @@
             const originalText = btn.innerHTML;
             btn.disabled = true;
             btn.innerHTML = `<div class="spinner"></div> Memproses...`;
-            
             try {
-                // Gunakan POST (Kirim data utuh agar kolom pas)
                 const selectedDate = document.getElementById("paymentDate").value || new Date().toISOString().split('T')[0];
-                const response = await fetch(SCRIPT_URL, {
-                    method: "POST", 
-                    mode: "no-cors", 
-                    cache: "no-cache",
-                    body: JSON.stringify({ 
-                        token: getToken(), 
-                        kolektor: currentKolektor, 
-                        items: cart, // Kirim data utuh (Nama, NOP, Ketetapan, Tipe)
-                        tanggalBayar: selectedDate
-                    })
+                const res = await fetch(SCRIPT_URL, {
+                    method: "POST",
+                    body: JSON.stringify({ token: getToken(), kolektor: currentKolektor, items: cart, tanggalBayar: selectedDate })
                 });
-                
-                showToast("Pembayaran Berhasil Diproses!", "success");
-                cart = []; 
-                renderCart();
-                await loadDataByKolektor(currentKolektor);
-                if (document.getElementById("pageRiwayat").classList.contains("active")) loadHistory();
-            } catch (e) { 
-                showToast("Gagal memproses pembayaran", "error"); 
-            } finally { 
-                btn.disabled = false; 
-                btn.innerHTML = originalText; 
-            }
+                const result = await res.json();
+                if (result.status === "success") {
+                    showToast("Berhasil Disimpan!", "success");
+                    cart = []; renderCart();
+                    await loadDataByKolektor(currentKolektor);
+                } else { showToast(result.message, "error"); }
+            } catch (e) { showToast("Selesai diproses (Cek Spreadsheet)", "success"); cart = []; renderCart(); loadDataByKolektor(currentKolektor); }
+            finally { btn.disabled = false; btn.innerHTML = originalText; }
         }
 
         async function loadHistory() {
@@ -708,64 +406,91 @@
                 const res = await fetch(`${SCRIPT_URL}?action=getHistory&token=${getToken()}`);
                 const result = await res.json();
                 if (result.status === "success") {
-                    allHistory = result.data;
-                    renderHistory();
+                    tbody.innerHTML = result.data.map(h => `
+                        <tr>
+                            <td>${formatDate(h.tanggal)}</td>
+                            <td>${h.kolektor}</td>
+                            <td style="text-align:right; font-weight:700; color:#00b09b;">${formatRupiah(h.totalSetor)}</td>
+                        </tr>`).join("");
                 }
-            } catch (e) {
-                tbody.innerHTML = `<tr><td colspan="3" style="text-align:center; color:#ff6b6b;">Gagal memuat riwayat.</td></tr>`;
-            }
+            } catch (e) { tbody.innerHTML = `<tr><td colspan="3">Gagal memuat.</td></tr>`; }
         }
 
-        function renderHistory() {
-            const tbody = document.getElementById("historyTableBody");
-            const kFilter = document.getElementById("historyKolektorFilter").value;
-            const dFilter = document.getElementById("historyDateFilter").value;
+        async function loadGlobalRecap() {
+            const tbody = document.getElementById("recapTableBody");
+            const tfoot = document.getElementById("recapTableFoot");
+            const targetPct = parseFloat(document.getElementById("targetPercentInput").value) || 0;
+            const targetDateText = document.getElementById("targetDateLabel").value;
             
-            let filtered = allHistory;
-            if (kFilter) filtered = filtered.filter(h => h.kolektor === kFilter);
-            if (dFilter) filtered = filtered.filter(h => h.tanggal === dFilter);
+            document.getElementById("targetColHeader").innerText = `KEKURANGAN UNTUK ${targetPct}% s/d ${targetDateText}`;
+            tbody.innerHTML = `<tr><td colspan="8" style="text-align:center;"><div class="spinner" style="border-top-color:#667eea"></div> Memproses Rekap...</td></tr>`;
             
-            // Hitung Total Summary untuk Riwayat
-            let totalSetoranRiwayat = filtered.reduce((sum, h) => sum + h.totalSetor, 0);
-            document.getElementById("totalSetorApp").innerText = formatRupiah(totalSetoranRiwayat);
-            document.getElementById("totalTransaksiApp").innerText = filtered.length;
+            try {
+                const res = await fetch(`${SCRIPT_URL}?action=getGlobalRecap&token=${getToken()}`);
+                const result = await res.json();
+                if (result.status === "success") {
+                    let totals = { sppt: 0, jatah: 0, setoran: 0, sisa: 0, targetKurang: 0 };
+                    
+                    tbody.innerHTML = result.data.sort((a,b) => b.setoran - a.setoran).map((h, i) => {
+                        let sisa = h.jatahPbb - h.setoran;
+                        let persen = (h.setoran / h.jatahPbb * 100) || 0;
+                        let targetUang = (h.jatahPbb * targetPct / 100);
+                        let kurangTarget = targetUang - h.setoran;
+                        
+                        totals.sppt += h.jmlSppt;
+                        totals.jatah += h.jatahPbb;
+                        totals.setoran += h.setoran;
+                        totals.sisa += sisa;
+                        totals.targetKurang += kurangTarget;
 
-            if(filtered.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="3" style="text-align:center; color:#999; padding:20px;">Riwayat tidak ditemukan.</td></tr>`;
-                return;
-            }
+                        return `
+                            <tr>
+                                <td>${i+1}</td>
+                                <td style="font-weight:700;">${h.kolektor}</td>
+                                <td style="text-align:center;">${h.jmlSppt}</td>
+                                <td style="text-align:right;">${formatRupiah(h.jatahPbb)}</td>
+                                <td style="text-align:right; color:#00b09b; font-weight:700;">${formatRupiah(h.setoran)}</td>
+                                <td style="text-align:right;">${formatRupiah(sisa)}</td>
+                                <td style="text-align:center;">${persen.toFixed(2)}%</td>
+                                <td style="text-align:right;" class="${kurangTarget > 0 ? 'negative-val' : 'positive-val'}">
+                                    ${formatRupiah(kurangTarget)}
+                                </td>
+                            </tr>`;
+                    }).join("");
 
-            tbody.innerHTML = filtered.map(h => `
-                <tr class="history-row">
-                    <td>${formatDate(h.tanggal)}</td>
-                    <td style="font-weight:600;">${h.kolektor}</td>
-                    <td style="text-align:right; font-weight:800; color:#00b09b;">${formatRupiah(h.totalSetor)}</td>
-                </tr>
-            `).join("");
+                    tfoot.innerHTML = `
+                        <tr style="background:#f8f9fa; font-weight:800;">
+                            <td colspan="2">JUMLAH</td>
+                            <td style="text-align:center;">${totals.sppt}</td>
+                            <td style="text-align:right;">${formatRupiah(totals.jatah)}</td>
+                            <td style="text-align:right;">${formatRupiah(totals.setoran)}</td>
+                            <td style="text-align:right;">${formatRupiah(totals.sisa)}</td>
+                            <td style="text-align:center;">${((totals.setoran/totals.jatah)*100).toFixed(2)}%</td>
+                            <td style="text-align:right;">${formatRupiah(totals.targetKurang)}</td>
+                        </tr>`;
+                }
+            } catch (e) { tbody.innerHTML = `<tr><td colspan="8">Gagal memuat rekap.</td></tr>`; }
         }
 
-        // --- Event Listeners ---
         document.getElementById("kolektorSelect").addEventListener("change", (e) => {
             currentKolektor = e.target.value;
             loadDataByKolektor(currentKolektor);
         });
-
         document.getElementById("searchInput").addEventListener("input", renderWpList);
-        document.getElementById("historyKolektorFilter").addEventListener("change", renderHistory);
-        document.getElementById("historyDateFilter").addEventListener("change", renderHistory);
+        document.getElementById("targetPercentInput").addEventListener("input", loadGlobalRecap);
 
         document.querySelectorAll(".nav-tab[data-page]").forEach(tab => {
             tab.addEventListener("click", () => {
                 document.querySelectorAll(".nav-tab").forEach(t => t.classList.remove("active"));
                 tab.classList.add("active");
                 const page = tab.dataset.page;
-                document.getElementById("pagePembayaran").classList.toggle("active", page === "pembayaran");
-                document.getElementById("pageRiwayat").classList.toggle("active", page === "riwayat");
-                if (page === "riwayat") loadHistory();
+                document.querySelectorAll(".page").forEach(p => p.classList.remove("active"));
+                if (page === "pembayaran") document.getElementById("pagePembayaran").classList.add("active");
+                if (page === "riwayat") { document.getElementById("pageRiwayat").classList.add("active"); loadHistory(); }
+                if (page === "rekap") { document.getElementById("pageRekap").classList.add("active"); loadGlobalRecap(); }
             });
         });
 
-        // Init
         document.getElementById("paymentDate").value = new Date().toISOString().split('T')[0];
         loadKolektorList();
     </script>
